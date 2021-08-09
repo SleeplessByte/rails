@@ -63,6 +63,7 @@ createXHR = (options, done) ->
 
 processResponse = (response, type) ->
   if typeof response is 'string' and typeof type is 'string'
+    type = type.replace(/;.+/, '')
     if type.match(/\bjson\b/)
       try response = JSON.parse(response)
     else if type.match(/\b(?:java|ecma)script\b/)
@@ -72,7 +73,6 @@ processResponse = (response, type) ->
       document.head.appendChild(script).parentNode.removeChild(script)
     else if type.match(/\b(xml|html|svg)\b/)
       parser = new DOMParser()
-      type = type.replace(/;.+/, '') # remove something like ';charset=utf-8'
       try response = parser.parseFromString(response, type)
   response
 
