@@ -9,8 +9,8 @@ AcceptHeaders =
   text: 'text/plain'
   html: 'text/html'
   xml: 'application/xml, text/xml'
-  json: 'application/json, text/javascript'
-  script: 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript'
+  json: 'application/json'
+  script: 'application/javascript'
 
 Rails.ajax = (options) ->
   options = prepareOptions(options)
