@@ -64,9 +64,9 @@ createXHR = (options, done) ->
 processResponse = (response, type) ->
   if typeof response is 'string' and typeof type is 'string'
     type = type.replace(/;.+/, '')
-    if type.match(/\bjson\b/)
+    if type.match(/^application\/json$/) or type.match(/\+json$/)
       try response = JSON.parse(response)
-    else if type.match(/\b(?:java|ecma)script\b/)
+    else if type.match(/^(?:application|text)\/(?:java|ecma)script$/)
       script = document.createElement('script')
       script.setAttribute('nonce', cspNonce())
       script.text = response
